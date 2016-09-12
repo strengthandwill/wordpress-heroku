@@ -15,7 +15,7 @@
  */
 
 // ** Heroku Postgres settings - from Heroku Environment ** //
-$db = parse_url($_ENV["DATABASE_URL"]);
+$db = parse_url($_ENV["DATABASE_URL"] ? $_ENV["DATABASE_URL"] : "postgres://wordpress:wordpress@localhost:5432/wordpress");
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
@@ -55,6 +55,8 @@ define('LOGGED_IN_SALT',        getenv('LOGGED_IN_SALT'));
 define('NONCE_SALT',            getenv('NONCE_SALT'));
 define('AWS_ACCESS_KEY_ID',     getenv('AWS_ACCESS_KEY_ID'));
 define('AWS_SECRET_ACCESS_KEY', getenv('AWS_SECRET_ACCESS_KEY'));
+
+define('WP_ALLOW_REPAIR', true);
 
 /**#@-*/
 
